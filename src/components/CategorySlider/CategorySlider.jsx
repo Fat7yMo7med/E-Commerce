@@ -1,50 +1,53 @@
-import axios from 'axios';
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import Slider from 'react-slick';
+import Slider from 'react-slick'
+import styles from './CategorySlider.module.css'
 
 export default function CategorySlider() {
 
-  var settings = {
+  const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 600,
     slidesToShow: 6,
-    slidesToScroll: 1
-  };
-
-  let [category , setCategory] = useState([])
-  function getCategorys(){
-    axios.get('https://ecommerce.routemisr.com/api/v1/categories')
-    .then( (response)=>{
-     console.log('response_Of_category' , response.data.data)
-     setCategory(response.data.data) 
-     } )
-   
-    .catch( ()=>{} )
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2500,
+    responsive: [
+      { breakpoint: 1200, settings: { slidesToShow: 4 } },
+      { breakpoint: 768, settings: { slidesToShow: 3 } },
+      { breakpoint: 480, settings: { slidesToShow: 2 } }
+    ]
   }
-  useEffect( ()=>{
-    getCategorys();
-  } , [])
+
+  const [category, setCategory] = useState([])
+
+  function getCategories() {
+    axios.get('https://ecommerce.routemisr.com/api/v1/categories')
+      .then((response) => {
+        setCategory(response.data.data)
+      })
+      .catch(() => { })
+  }
+
+  useEffect(() => {
+    getCategories()
+  }, [])
 
   return (
-    <div>
-      <h1 className='py-4'>Shop Popular Category</h1>
+    <div className={styles.sliderWrapper}>
       <Slider {...settings}>
 
-       {
-         category.map( (item)=>{
-            return (
-              <div>
-                <img src={item.image} alt={item.name} className='category-img'/>
-                <p className='text-center mt-3'>{item.name}</p>
-              </div>
-                   )
-            } )
-       }
-  
+        {category.map((item) => (
+          <div key={item._id} className={styles.slideItem}>
+            <div className={styles.imageBox}>
+              <img src={item.image} alt={item.name} />
+            </div>
+            <p className={styles.categoryName}>{item.name}</p>
+          </div>
+        ))}
 
       </Slider>
     </div>
   )
 }
-

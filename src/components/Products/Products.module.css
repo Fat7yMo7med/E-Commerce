@@ -1,0 +1,99 @@
+.productsContainer {
+  width: 90%;
+  margin: auto;
+  padding: 40px 0;
+}
+
+.title {
+  color: #374151;
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+/* ✅ Grid Layout */
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 25px;
+}
+
+/* ✅ Card */
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: 0.4s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
+}
+
+/* ✅ Product Image */
+.card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* ✅ Text Styling */
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.category {
+  color: #22c55e;
+  font-weight: 600;
+  margin-top: 8px;
+  display: block;
+}
+
+.productName {
+  font-size: 14px;
+  margin: 6px 0;
+  color: #111827;
+}
+
+/* ✅ Price & Rating */
+.priceRating {
+  display: flex;
+  justify-content: space-between;
+  color: #374151;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.priceRating i {
+  color: gold;
+  margin-left: 5px;
+}
+
+/* ✅ Add To Cart Button */
+.cartBtn {
+  margin-top: 12px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.cartBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
+}
+
+/* ✅ Responsive */
+@media (max-width: 768px) {
+  .productsContainer {
+    width: 95%;
+  }
+}
